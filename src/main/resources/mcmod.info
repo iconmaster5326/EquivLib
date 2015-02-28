@@ -1,0 +1,12 @@
+[
+{
+  "modid": "EquivLib",
+  "name": "EquivLib",
+  "description": "A library for equivalence mods.",
+  "version": "${mod_version}",
+  "mcversion": "${minecraft_version}",
+  "url": "",
+  "authorList": ["iconmaster"],
+  "logoFile": ""
+}
+]
