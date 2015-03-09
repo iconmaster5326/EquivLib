@@ -29,25 +29,32 @@ public class TestHandler implements EquivHandler<Double> {
 	@Override
 	public List<Double> calculateValues(RecipeMap<Double> map, ItemNode<Double> node) {
 		ArrayList<Double> a = new ArrayList<Double>();
+		
 		for (RecipeLink link : node.usedAsOutput) {
 			double sum = 0;
 			boolean failed = true;
 			for (ItemDataStack stack : link.inputs) {
 				failed = false;
 				ItemNode<Double> node2 = map.findNode(stack.item);
-				double d = getCorrectValue(map, node2);
-				if (d==0d) {
+				if (node2!=null) {
+					double d = getCorrectValue(map, node2);
+					if (d==0d) {
+						failed = true;
+						break;
+					} else {
+						sum += d * stack.amt;
+					}
+				} else {
 					failed = true;
 					break;
-				} else {
-					sum += d;
 				}
 			}
 			
 			if (!failed) {
-				a.add(sum);
+				a.add(sum / link.outputs.get(0).amt);
 			}
 		}
+		
 		return a;
 	}
 
@@ -56,10 +63,11 @@ public class TestHandler implements EquivHandler<Double> {
 		if (node.acceptedValue!=null) {
 			return node.acceptedValue;
 		}
-		
 		Double lowest = Double.MAX_VALUE;
-		for (Double d : node.calculatedValues) {
-			lowest = Math.min(lowest, d);
+		if (node.calculatedValues!=null) {
+			for (Double d : node.calculatedValues) {
+				lowest = Math.min(lowest, d);
+			}
 		}
 		return lowest==Double.MAX_VALUE ? 0 : lowest;
 	}

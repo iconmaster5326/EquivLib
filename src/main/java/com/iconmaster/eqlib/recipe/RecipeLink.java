@@ -38,4 +38,9 @@ public class RecipeLink {
 		}
 		return !(this.outputs != other.outputs && (this.outputs == null || !this.outputs.equals(other.outputs)));
 	}
+
+	@Override
+	public String toString() {
+		return "RecipeLink{" + "inputs=" + inputs + ", outputs=" + outputs + '}';
+	}
 }

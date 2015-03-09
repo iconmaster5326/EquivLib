@@ -55,4 +55,9 @@ public class ItemNode<T> {
 		}
 		return !(this.calculatedValues != other.calculatedValues && (this.calculatedValues == null || !this.calculatedValues.equals(other.calculatedValues)));
 	}
+
+	@Override
+	public String toString() {
+		return "ItemNode{" + "item=" + item + ", acceptedValue=" + acceptedValue + ", calculatedValues=" + calculatedValues + ", usedAsInput=" + usedAsInput + ", usedAsOutput=" + usedAsOutput + '}';
+	}
 }
