@@ -11,9 +11,9 @@ public class ItemData {
 
 	public static final String FLUID_NAME = "<FLUID>";
 
-	private String name;
-	private int meta;
-	private boolean fluid;
+	public String name;
+	public int meta;
+	public boolean fluid;
 
 	public ItemData(String name, int meta, boolean fluid) {
 		this.name = name;
@@ -37,30 +37,7 @@ public class ItemData {
 		this(FLUID_NAME, stack.fluidID, true);
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public int getMeta() {
-		return meta;
-	}
-
-	public boolean getFluid() {
-		return fluid;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setMeta(int meta) {
-		this.meta = meta;
-	}
-
-	public void setFluid(boolean fluid) {
-		this.fluid = fluid;
-	}
-
+	@Override
 	public int hashCode() {
 		int hash = 7;
 		hash = 59 * hash + (this.name != null ? this.name.hashCode() : 0);
@@ -69,6 +46,7 @@ public class ItemData {
 		return hash;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -86,6 +64,7 @@ public class ItemData {
 		return this.fluid == other.fluid;
 	}
 
+	@Override
 	public String toString() {
 		return "ItemData{" + "name=" + name + ", meta=" + meta + ", fluid=" + fluid + '}';
 	}
