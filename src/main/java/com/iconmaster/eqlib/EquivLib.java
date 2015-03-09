@@ -2,7 +2,7 @@ package com.iconmaster.eqlib;
 
 import com.iconmaster.eqlib.recipe.EquivRegistry;
 import com.iconmaster.eqlib.recipe.RecipeMap;
-import com.iconmaster.eqlib.test.TestHandler;
+import com.iconmaster.eqlib.examples.NumericHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 
@@ -21,7 +21,7 @@ public class EquivLib {
 	
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		RecipeMap map = new RecipeMap(new TestHandler());
+		RecipeMap map = new RecipeMap(new NumericHandler());
 		map.generateNodes();
 		//System.out.println(map.nodes);
 		EquivRegistry<Double> registry = new EquivRegistry<Double>(map.getMap());

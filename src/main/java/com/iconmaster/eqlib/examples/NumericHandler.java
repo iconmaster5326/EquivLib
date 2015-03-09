@@ -1,4 +1,4 @@
-package com.iconmaster.eqlib.test;
+package com.iconmaster.eqlib.examples;
 
 import com.iconmaster.eqlib.recipe.EquivHandler;
 import com.iconmaster.eqlib.recipe.ItemData;
@@ -17,7 +17,7 @@ import net.minecraft.item.ItemStack;
  *
  * @author iconmaster
  */
-public class TestHandler implements EquivHandler<Double> {
+public class NumericHandler implements EquivHandler<Double> {
 
 	@Override
 	public Map<ItemData, Double> getAcceptedValues(RecipeMap<Double> map) {
