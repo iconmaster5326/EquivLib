@@ -7,7 +7,7 @@ import java.util.List;
  *
  * @author iconmaster
  */
-public class ItemNode<T extends EquivEntry> {
+public class ItemNode<T> {
 	public ItemData item;
 	public T acceptedValue;
 	public List<T> calculatedValues;

@@ -9,7 +9,7 @@ import java.util.Map;
  *
  * @author iconmaster
  */
-public class RecipeMap<T extends EquivEntry> {
+public class RecipeMap<T> {
 
 	public List<ItemNode<T>> nodes;
 	public EquivHandler<T> handler;

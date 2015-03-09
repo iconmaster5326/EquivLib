@@ -6,7 +6,7 @@ import java.util.List;
  *
  * @author iconmaster
  */
-public class RecipeLink<T extends EquivEntry> {
+public class RecipeLink {
 
 	public List<ItemDataStack> inputs;
 	public List<ItemDataStack> outputs;

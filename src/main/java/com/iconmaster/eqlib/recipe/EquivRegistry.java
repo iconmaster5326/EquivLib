@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
  *
  * @author iconmaster
  */
-public class EquivRegistry<T extends EquivEntry> {
+public class EquivRegistry<T> {
 	public Map<ItemData, T> map;
 
 	public EquivRegistry(Map<ItemData, T> map) {
