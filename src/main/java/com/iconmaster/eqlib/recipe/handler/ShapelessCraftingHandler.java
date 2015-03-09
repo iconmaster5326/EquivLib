@@ -20,7 +20,7 @@ public class ShapelessCraftingHandler implements RecipeHandler {
 		
 		for (Object obj : RecipeRegistry.vanillaCrafting.get(ShapelessRecipes.class)) {
 			ShapelessRecipes recipe = (ShapelessRecipes) obj;
-			RecipeLink link = new RecipeLink(new ArrayList(), new ArrayList());
+			RecipeLink link = new RecipeLink();
 			
 			for (Object stack : recipe.recipeItems) {
 				if (stack!=null) {

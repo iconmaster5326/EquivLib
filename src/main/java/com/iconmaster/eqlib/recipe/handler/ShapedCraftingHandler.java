@@ -21,7 +21,7 @@ public class ShapedCraftingHandler implements RecipeHandler {
 		
 		for (Object obj : RecipeRegistry.vanillaCrafting.get(ShapedRecipes.class)) {
 			ShapedRecipes recipe = (ShapedRecipes) obj;
-			RecipeLink link = new RecipeLink(new ArrayList(), new ArrayList());
+			RecipeLink link = new RecipeLink();
 			
 			for (ItemStack stack : recipe.recipeItems) {
 				if (stack!=null) {

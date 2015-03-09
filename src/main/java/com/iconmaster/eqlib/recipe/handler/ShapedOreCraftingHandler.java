@@ -20,7 +20,7 @@ public class ShapedOreCraftingHandler implements RecipeHandler {
 		
 		for (Object obj : RecipeRegistry.vanillaCrafting.get(ShapedOreRecipe.class)) {
 			ShapedOreRecipe recipe = (ShapedOreRecipe) obj;
-			RecipeLink link = new RecipeLink(new ArrayList(), new ArrayList());
+			RecipeLink link = new RecipeLink();
 			
 			for (Object stack : recipe.getInput()) {
 				if (stack!=null) {

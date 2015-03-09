@@ -1,5 +1,6 @@
 package com.iconmaster.eqlib.recipe;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,6 +11,11 @@ public class RecipeLink {
 
 	public List<ItemDataStack> inputs;
 	public List<ItemDataStack> outputs;
+
+	public RecipeLink() {
+		this.inputs = new ArrayList<ItemDataStack>();
+		this.outputs = new ArrayList<ItemDataStack>();
+	}
 
 	public RecipeLink(List<ItemDataStack> inputs, List<ItemDataStack> outputs) {
 		this.inputs = inputs;

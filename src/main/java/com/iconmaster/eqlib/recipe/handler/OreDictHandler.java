@@ -22,7 +22,7 @@ public class OreDictHandler implements RecipeHandler {
 			for (ItemStack item1 : OreDictionary.getOres(s)) {
 				for (ItemStack item2 : OreDictionary.getOres(s)) {
 					if (item1!=item2) {
-						RecipeLink link = new RecipeLink(new ArrayList(), new ArrayList());
+						RecipeLink link = new RecipeLink();
 						
 						link.inputs.add(new ItemDataStack(item1));
 						link.outputs.add(new ItemDataStack(item2));

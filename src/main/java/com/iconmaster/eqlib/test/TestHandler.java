@@ -22,7 +22,7 @@ public class TestHandler implements EquivHandler<Double> {
 	@Override
 	public Map<ItemData, Double> getAcceptedValues(RecipeMap<Double> map) {
 		HashMap<ItemData, Double> amap = new HashMap<ItemData, Double>();
-		amap.put(new ItemData(new ItemStack(Blocks.log)), 4d);
+		amap.put(new ItemData(new ItemStack(Blocks.planks)), 4d);
 		return amap;
 	}
 
@@ -31,27 +31,56 @@ public class TestHandler implements EquivHandler<Double> {
 		ArrayList<Double> a = new ArrayList<Double>();
 		
 		for (RecipeLink link : node.usedAsOutput) {
-			double sum = 0;
-			boolean failed = true;
-			for (ItemDataStack stack : link.inputs) {
-				failed = false;
-				ItemNode<Double> node2 = map.findNode(stack.item);
-				if (node2!=null) {
-					Double d = getCorrectValue(map, node2);
-					if (d==null) {
+			if (link.outputs.size()==1) {
+				double sum = 0;
+				boolean failed = true;
+				for (ItemDataStack stack : link.inputs) {
+					failed = false;
+					ItemNode<Double> node2 = map.findNode(stack.item);
+					if (node2!=null) {
+						Double d = getCorrectValue(map, node2);
+						if (d==null) {
+							failed = true;
+							break;
+						} else {
+							sum += d * stack.amt;
+						}
+					} else {
 						failed = true;
 						break;
-					} else {
-						sum += d * stack.amt;
 					}
-				} else {
-					failed = true;
-					break;
+				}
+
+				if (!failed) {
+					a.add(sum / link.outputs.get(0).amt);
 				}
 			}
-			
-			if (!failed) {
-				a.add(sum / link.outputs.get(0).amt);
+		}
+		
+		for (RecipeLink link : node.usedAsInput) {
+			if (link.inputs.size()==1) {
+				double sum = 0;
+				boolean failed = true;
+				for (ItemDataStack stack : link.outputs) {
+					failed = false;
+					ItemNode<Double> node2 = map.findNode(stack.item);
+					if (node2!=null) {
+						Double d = getCorrectValue(map, node2);
+						if (d==null) {
+							failed = true;
+							break;
+						} else {
+							sum += d * stack.amt;
+						}
+					} else {
+						failed = true;
+						break;
+					}
+				}
+
+				if (!failed) {
+					a.add(sum / link.inputs.get(0).amt);
+				}
 			}
 		}
 		

@@ -1,5 +1,6 @@
 package com.iconmaster.eqlib.recipe;
 
+import com.iconmaster.eqlib.recipe.handler.FurnaceHandler;
 import com.iconmaster.eqlib.recipe.handler.OreDictHandler;
 import com.iconmaster.eqlib.recipe.handler.ShapedCraftingHandler;
 import com.iconmaster.eqlib.recipe.handler.ShapedOreCraftingHandler;
@@ -29,6 +30,7 @@ public class RecipeRegistry {
 		handlers.add(new ShapedOreCraftingHandler());
 		handlers.add(new ShapelessOreCraftingHandler());
 		handlers.add(new OreDictHandler());
+		handlers.add(new FurnaceHandler());
 	}
 
 	public static List<RecipeLink> getRecipes() {
