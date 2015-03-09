@@ -37,8 +37,8 @@ public class TestHandler implements EquivHandler<Double> {
 				failed = false;
 				ItemNode<Double> node2 = map.findNode(stack.item);
 				if (node2!=null) {
-					double d = getCorrectValue(map, node2);
-					if (d==0d) {
+					Double d = getCorrectValue(map, node2);
+					if (d==null) {
 						failed = true;
 						break;
 					} else {
@@ -69,7 +69,7 @@ public class TestHandler implements EquivHandler<Double> {
 				lowest = Math.min(lowest, d);
 			}
 		}
-		return lowest==Double.MAX_VALUE ? 0 : lowest;
+		return lowest==Double.MAX_VALUE ? null : lowest;
 	}
 
 }

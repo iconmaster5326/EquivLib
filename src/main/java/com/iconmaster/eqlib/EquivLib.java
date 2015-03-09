@@ -23,7 +23,7 @@ public class EquivLib {
 	public void postInit(FMLPostInitializationEvent event) {
 		RecipeMap map = new RecipeMap(new TestHandler());
 		map.generateNodes();
-		System.out.println(map.nodes);
+		//System.out.println(map.nodes);
 		EquivRegistry<Double> registry = new EquivRegistry<Double>(map.getMap());
 		System.out.println(registry.map);
 	}

@@ -69,7 +69,10 @@ public class RecipeMap<T> {
 		
 		Map<ItemData, T> map = new HashMap<ItemData, T>();
 		for (ItemNode<T> node : nodes) {
-			map.put(node.item, handler.getCorrectValue(this, node));
+			T value = handler.getCorrectValue(this, node);
+			if (value!=null) {
+				map.put(node.item, value);
+			}
 		}
 		return map;
 	}
