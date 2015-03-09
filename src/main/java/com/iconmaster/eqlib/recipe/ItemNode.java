@@ -10,7 +10,7 @@ import java.util.List;
 public class ItemNode<T extends EquivEntry> {
 	public ItemData item;
 	public T acceptedValue;
-	public List<T> calcualtedValues;
+	public List<T> calculatedValues;
 	
 	public List<RecipeLink> usedAsInput = new ArrayList<RecipeLink>();
 	public List<RecipeLink> usedAsOutput = new ArrayList<RecipeLink>();
@@ -18,7 +18,7 @@ public class ItemNode<T extends EquivEntry> {
 	public ItemNode(ItemData item, T acceptedValue, List<T> calcualtedValues) {
 		this.item = item;
 		this.acceptedValue = acceptedValue;
-		this.calcualtedValues = calcualtedValues;
+		this.calculatedValues = calcualtedValues;
 	}
 	
 	public ItemNode(ItemData item) {
@@ -34,7 +34,7 @@ public class ItemNode<T extends EquivEntry> {
 		int hash = 7;
 		hash = 79 * hash + (this.item != null ? this.item.hashCode() : 0);
 		hash = 79 * hash + (this.acceptedValue != null ? this.acceptedValue.hashCode() : 0);
-		hash = 79 * hash + (this.calcualtedValues != null ? this.calcualtedValues.hashCode() : 0);
+		hash = 79 * hash + (this.calculatedValues != null ? this.calculatedValues.hashCode() : 0);
 		return hash;
 	}
 
@@ -53,6 +53,6 @@ public class ItemNode<T extends EquivEntry> {
 		if (this.acceptedValue != other.acceptedValue && (this.acceptedValue == null || !this.acceptedValue.equals(other.acceptedValue))) {
 			return false;
 		}
-		return !(this.calcualtedValues != other.calcualtedValues && (this.calcualtedValues == null || !this.calcualtedValues.equals(other.calcualtedValues)));
+		return !(this.calculatedValues != other.calculatedValues && (this.calculatedValues == null || !this.calculatedValues.equals(other.calculatedValues)));
 	}
 }

@@ -1,7 +1,9 @@
 package com.iconmaster.eqlib.recipe;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -42,6 +44,33 @@ public class RecipeMap<T extends EquivEntry> {
 			}
 		}
 		
+		Map<ItemData, T> acceptedValues = handler.getAcceptedValues();
+		for (ItemNode<T> node : nodes) {
+			if (acceptedValues.containsKey(node.item)) {
+				node.acceptedValue = acceptedValues.get(node.item);
+			}
+		}
+		
 		return this;
+	}
+	
+	public Map<ItemData, T> getMap() {
+		int lastHash;
+		
+		do {
+			lastHash = nodes.hashCode();
+			
+			for (ItemNode<T> node : nodes) {
+				if (node.acceptedValue==null) {
+					node.calculatedValues = handler.calculateValues(node);
+				}
+			}
+		} while (lastHash!=nodes.hashCode());
+		
+		Map<ItemData, T> map = new HashMap<ItemData, T>();
+		for (ItemNode<T> node : nodes) {
+			map.put(node.item, handler.getCorrectValue(node));
+		}
+		return map;
 	}
 }
