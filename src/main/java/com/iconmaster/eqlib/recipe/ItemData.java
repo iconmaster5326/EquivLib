@@ -30,7 +30,7 @@ public class ItemData {
 	}
 
 	public ItemData(ItemStack stack) {
-		this(stack.getItem().delegate.name(), stack.getItemDamage(), false);
+		this(stack.getItem().delegate.name(), (stack.getHasSubtypes() && !((Integer)stack.getItemDamage()).equals(32767)) ? stack.getItemDamage() : 0, false);
 	}
 
 	public ItemData(FluidStack stack) {
