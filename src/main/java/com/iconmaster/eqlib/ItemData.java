@@ -1,6 +1,5 @@
 package com.iconmaster.eqlib;
 
-import com.iconmaster.eqlib.api.IItemData;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -8,9 +7,10 @@ import net.minecraftforge.fluids.FluidStack;
  *
  * @author iconmaster
  */
-public class ItemData implements IItemData {
+public class ItemData {
+
 	public static final String FLUID_NAME = "<FLUID>";
-	
+
 	private String name;
 	private int meta;
 	private boolean fluid;
@@ -20,7 +20,7 @@ public class ItemData implements IItemData {
 		this.meta = meta;
 		this.fluid = fluid;
 	}
-	
+
 	public ItemData(String name) {
 		this(name, 0, false);
 	}
@@ -30,44 +30,37 @@ public class ItemData implements IItemData {
 	}
 
 	public ItemData(ItemStack stack) {
-		this(stack.getItem().delegate.name(),stack.getItemDamage(), false);
+		this(stack.getItem().delegate.name(), stack.getItemDamage(), false);
 	}
 
 	public ItemData(FluidStack stack) {
 		this(FLUID_NAME, stack.fluidID, true);
 	}
 
-	@Override
 	public String getName() {
 		return name;
 	}
 
-	@Override
 	public int getMeta() {
 		return meta;
 	}
 
-	@Override
 	public boolean getFluid() {
 		return fluid;
 	}
 
-	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	@Override
 	public void setMeta(int meta) {
 		this.meta = meta;
 	}
 
-	@Override
 	public void setFluid(boolean fluid) {
 		this.fluid = fluid;
 	}
 
-	@Override
 	public int hashCode() {
 		int hash = 7;
 		hash = 59 * hash + (this.name != null ? this.name.hashCode() : 0);
@@ -76,7 +69,6 @@ public class ItemData implements IItemData {
 		return hash;
 	}
 
-	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -94,7 +86,6 @@ public class ItemData implements IItemData {
 		return this.fluid == other.fluid;
 	}
 
-	@Override
 	public String toString() {
 		return "ItemData{" + "name=" + name + ", meta=" + meta + ", fluid=" + fluid + '}';
 	}
