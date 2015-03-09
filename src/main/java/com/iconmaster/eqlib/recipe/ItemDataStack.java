@@ -43,4 +43,9 @@ public class ItemDataStack {
 		}
 		return Float.floatToIntBits(this.amt) == Float.floatToIntBits(other.amt);
 	}
+
+	@Override
+	public String toString() {
+		return "ItemDataStack{" + "item=" + item + ", amt=" + amt + '}';
+	}
 }

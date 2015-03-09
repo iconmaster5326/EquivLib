@@ -1,6 +1,7 @@
 package com.iconmaster.eqlib.recipe;
 
 import com.iconmaster.eqlib.recipe.handler.ShapedCraftingHandler;
+import com.iconmaster.eqlib.recipe.handler.ShapelessCraftingHandler;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +20,7 @@ public class RecipeRegistry {
 	
 	static { //add default handlers
 		handlers.add(new ShapedCraftingHandler());
+		handlers.add(new ShapelessCraftingHandler());
 	}
 
 	public static List<RecipeLink> getRecipes() {
