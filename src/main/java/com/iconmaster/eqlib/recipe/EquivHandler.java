@@ -8,7 +8,7 @@ import java.util.Map;
  * @author iconmaster
  */
 public interface EquivHandler<T> {
-	public Map<ItemData, T> getAcceptedValues();
-	public List<T> calculateValues(ItemNode<T> node);
-	public T getCorrectValue(ItemNode<T> node);
+	public Map<ItemData, T> getAcceptedValues(RecipeMap<T> map);
+	public List<T> calculateValues(RecipeMap<T> map, ItemNode<T> node);
+	public T getCorrectValue(RecipeMap<T> map, ItemNode<T> node);
 }

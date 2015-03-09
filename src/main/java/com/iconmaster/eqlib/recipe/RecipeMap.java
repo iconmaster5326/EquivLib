@@ -44,7 +44,7 @@ public class RecipeMap<T> {
 			}
 		}
 		
-		Map<ItemData, T> acceptedValues = handler.getAcceptedValues();
+		Map<ItemData, T> acceptedValues = handler.getAcceptedValues(this);
 		for (ItemNode<T> node : nodes) {
 			if (acceptedValues.containsKey(node.item)) {
 				node.acceptedValue = acceptedValues.get(node.item);
@@ -62,15 +62,24 @@ public class RecipeMap<T> {
 			
 			for (ItemNode<T> node : nodes) {
 				if (node.acceptedValue==null) {
-					node.calculatedValues = handler.calculateValues(node);
+					node.calculatedValues = handler.calculateValues(this, node);
 				}
 			}
 		} while (lastHash!=nodes.hashCode());
 		
 		Map<ItemData, T> map = new HashMap<ItemData, T>();
 		for (ItemNode<T> node : nodes) {
-			map.put(node.item, handler.getCorrectValue(node));
+			map.put(node.item, handler.getCorrectValue(this, node));
 		}
 		return map;
+	}
+
+	public ItemNode<T> findNode(ItemData item) {
+		for (ItemNode<T> node : nodes) {
+			if (node.item.equals(item)) {
+				return node;
+			}
+		}
+		return null;
 	}
 }

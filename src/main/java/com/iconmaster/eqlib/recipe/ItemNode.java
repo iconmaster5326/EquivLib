@@ -10,7 +10,7 @@ import java.util.List;
 public class ItemNode<T> {
 	public ItemData item;
 	public T acceptedValue;
-	public List<T> calculatedValues;
+	public List<T> calculatedValues = new ArrayList<T>();
 	
 	public List<RecipeLink> usedAsInput = new ArrayList<RecipeLink>();
 	public List<RecipeLink> usedAsOutput = new ArrayList<RecipeLink>();

@@ -24,7 +24,9 @@ public class ShapedCraftingHandler implements RecipeHandler {
 			RecipeLink link = new RecipeLink(new ArrayList(), new ArrayList());
 			
 			for (ItemStack stack : recipe.recipeItems) {
-				link.inputs.add(new ItemDataStack(stack));
+				if (stack!=null) {
+					link.inputs.add(new ItemDataStack(stack));
+				}
 			}
 			
 			link.outputs.add(new ItemDataStack(recipe.getRecipeOutput()));
