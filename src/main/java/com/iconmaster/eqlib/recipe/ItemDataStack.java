@@ -1,5 +1,7 @@
 package com.iconmaster.eqlib.recipe;
 
+import net.minecraft.item.ItemStack;
+
 /**
  *
  * @author iconmaster
@@ -12,6 +14,11 @@ public class ItemDataStack {
 	public ItemDataStack(ItemData item, float amt) {
 		this.item = item;
 		this.amt = amt;
+	}
+	
+	public ItemDataStack(ItemStack stack) {
+		this.item = new ItemData(stack);
+		this.amt = stack.stackSize;
 	}
 
 	@Override

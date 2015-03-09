@@ -1,7 +1,10 @@
 package com.iconmaster.eqlib.recipe;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import net.minecraft.item.crafting.CraftingManager;
 
 /**
  *
@@ -11,19 +14,27 @@ public class RecipeRegistry {
 
 	private static List<RecipeLink> recipes;
 	public static List<RecipeHandler> handlers = new ArrayList<RecipeHandler>();
+	public static Map<Class, List> vanillaCrafting;
 
 	public static List<RecipeLink> getRecipes() {
 		if (recipes == null) {
-			recipes = generateRecipesList();
+			generateRecipesList();
 		}
 		return recipes;
 	}
 
-	public static List<RecipeLink> generateRecipesList() {
-		ArrayList<RecipeLink> a = new ArrayList<RecipeLink>();
-		for (RecipeHandler handler : handlers) {
-			a.addAll(handler.getRecipes());
+	public static void generateRecipesList() {
+		vanillaCrafting = new HashMap();
+		for (Object recipe : CraftingManager.getInstance().getRecipeList()) {
+			if (!vanillaCrafting.containsKey(recipe.getClass())) {
+				vanillaCrafting.put(recipe.getClass(), new ArrayList());
+			}
+			vanillaCrafting.get(recipe.getClass()).add(recipe);
 		}
-		return a;
+		
+		recipes = new ArrayList<RecipeLink>();
+		for (RecipeHandler handler : handlers) {
+			recipes.addAll(handler.getRecipes());
+		}
 	}
 }
