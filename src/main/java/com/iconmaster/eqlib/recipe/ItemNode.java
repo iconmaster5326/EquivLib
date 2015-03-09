@@ -1,5 +1,6 @@
 package com.iconmaster.eqlib.recipe;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,6 +11,9 @@ public class ItemNode<T extends EquivEntry> {
 	public ItemData item;
 	public T acceptedValue;
 	public List<T> calcualtedValues;
+	
+	public List<RecipeLink> usedAsInput = new ArrayList<RecipeLink>();
+	public List<RecipeLink> usedAsOutput = new ArrayList<RecipeLink>();
 
 	public ItemNode(ItemData item, T acceptedValue, List<T> calcualtedValues) {
 		this.item = item;
