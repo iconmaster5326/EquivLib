@@ -1,4 +1,4 @@
-package com.iconmaster.eqlib;
+package com.iconmaster.eqlib.recipe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,7 @@ import java.util.List;
 public class RecipeRegistry {
 
 	private static List<RecipeLink> recipes;
+	public static List<RecipeHandler> handlers = new ArrayList<RecipeHandler>();
 
 	public static List<RecipeLink> getRecipes() {
 		if (recipes == null) {
@@ -19,6 +20,10 @@ public class RecipeRegistry {
 	}
 
 	public static List<RecipeLink> generateRecipesList() {
-		return new ArrayList<RecipeLink>();
+		ArrayList<RecipeLink> a = new ArrayList<RecipeLink>();
+		for (RecipeHandler handler : handlers) {
+			a.addAll(handler.getRecipes());
+		}
+		return a;
 	}
 }

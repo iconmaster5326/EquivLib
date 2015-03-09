@@ -1,4 +1,4 @@
-package com.iconmaster.eqlib;
+package com.iconmaster.eqlib.recipe;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;

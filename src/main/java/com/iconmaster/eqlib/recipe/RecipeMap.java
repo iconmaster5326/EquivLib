@@ -1,4 +1,4 @@
-package com.iconmaster.eqlib;
+package com.iconmaster.eqlib.recipe;
 
 import java.util.HashSet;
 import java.util.Set;
