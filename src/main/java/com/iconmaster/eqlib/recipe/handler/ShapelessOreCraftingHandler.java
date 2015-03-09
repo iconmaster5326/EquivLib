@@ -6,23 +6,23 @@ import com.iconmaster.eqlib.recipe.RecipeLink;
 import com.iconmaster.eqlib.recipe.RecipeRegistry;
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.item.crafting.ShapelessRecipes;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 /**
  *
  * @author iconmaster
  */
-public class ShapelessCraftingHandler implements RecipeHandler {
+public class ShapelessOreCraftingHandler implements RecipeHandler {
 
 	@Override
 	public List<RecipeLink> getRecipes() {
 		List<RecipeLink> a = new ArrayList<RecipeLink>();
 		
-		for (Object obj : RecipeRegistry.vanillaCrafting.get(ShapelessRecipes.class)) {
-			ShapelessRecipes recipe = (ShapelessRecipes) obj;
+		for (Object obj : RecipeRegistry.vanillaCrafting.get(ShapelessOreRecipe.class)) {
+			ShapelessOreRecipe recipe = (ShapelessOreRecipe) obj;
 			RecipeLink link = new RecipeLink(new ArrayList(), new ArrayList());
 			
-			for (Object stack : recipe.recipeItems) {
+			for (Object stack : recipe.getInput()) {
 				if (stack!=null) {
 					link.inputs.add(new ItemDataStack(RecipeRegistry.flatten(stack)));
 				}

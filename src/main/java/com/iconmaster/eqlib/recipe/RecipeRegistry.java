@@ -1,12 +1,16 @@
 package com.iconmaster.eqlib.recipe;
 
 import com.iconmaster.eqlib.recipe.handler.ShapedCraftingHandler;
+import com.iconmaster.eqlib.recipe.handler.ShapedOreCraftingHandler;
 import com.iconmaster.eqlib.recipe.handler.ShapelessCraftingHandler;
+import com.iconmaster.eqlib.recipe.handler.ShapelessOreCraftingHandler;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
+import net.minecraftforge.oredict.OreDictionary;
 
 /**
  *
@@ -21,6 +25,8 @@ public class RecipeRegistry {
 	static { //add default handlers
 		handlers.add(new ShapedCraftingHandler());
 		handlers.add(new ShapelessCraftingHandler());
+		handlers.add(new ShapedOreCraftingHandler());
+		handlers.add(new ShapelessOreCraftingHandler());
 	}
 
 	public static List<RecipeLink> getRecipes() {
@@ -43,5 +49,24 @@ public class RecipeRegistry {
 		for (RecipeHandler handler : handlers) {
 			recipes.addAll(handler.getRecipes());
 		}
+	}
+	
+	public static ItemStack flatten(Object obj) {
+		if (obj instanceof ItemStack) {
+			return (ItemStack) obj;
+		} else if (obj instanceof List) {
+			if (((List)obj).isEmpty()) {
+				return null;
+			}
+			return flatten(((List)obj).get(0));
+		} else if (obj instanceof String) {
+			ArrayList<ItemStack> ores = OreDictionary.getOres((String)obj);
+			if (ores.isEmpty()) {
+				return null;
+			}
+			return ores.get(0);
+		}
+		
+		return null;
 	}
 }
