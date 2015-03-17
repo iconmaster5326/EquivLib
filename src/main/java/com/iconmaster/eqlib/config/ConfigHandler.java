@@ -20,6 +20,7 @@ public abstract class ConfigHandler<T> {
 	public String modName;
 	public EquivHandler<T> handler;
 	public Map<ItemData, T> values;
+	public File configDir;
 
 	public boolean useCache = true;
 
@@ -31,6 +32,12 @@ public abstract class ConfigHandler<T> {
 	public abstract String toString(T item);
 
 	public abstract T fromString(String item);
+	
+	public void loadConfig(File file) {
+		configDir = file;
+		loadSettings(new File(file, "settings.cfg"));
+		loadCache(new File(file, "cache.eqlib"));
+	}
 
 	public void loadSettings(File file) {
 		Configuration cfg = new Configuration(file);

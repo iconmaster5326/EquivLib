@@ -2,7 +2,7 @@ package com.iconmaster.eqlib;
 
 import com.iconmaster.eqlib.config.ConfigHandler;
 import com.iconmaster.eqlib.config.ConfigRegistry;
-import com.iconmaster.eqlib.examples.ExampleConfig;
+import com.iconmaster.eqlib.examples.NumericSystem;
 import com.iconmaster.eqlib.recipe.RecipeRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -31,7 +31,7 @@ public class EquivLib {
 	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		ConfigRegistry.registerConfig(new ExampleConfig());
+		new NumericSystem();
 		
 		configRoot = new File(event.getModConfigurationDirectory(), "eqlib/");
 		configRoot.mkdir();
@@ -59,10 +59,7 @@ public class EquivLib {
 			dir.mkdir();
 			File dir2 = new File(dir, "values/");
 			dir2.mkdir();
-			File dir3 = new File(dir, "settings.cfg");
-			handler.loadSettings(dir3);
-			File dir4 = new File(dir, "cache.eqlib");
-			handler.loadCache(dir4);
+			handler.loadConfig(dir);
 		}
 	}
 }
