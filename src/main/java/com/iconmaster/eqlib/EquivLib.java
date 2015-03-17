@@ -5,10 +5,12 @@ import com.iconmaster.eqlib.config.ConfigRegistry;
 import com.iconmaster.eqlib.examples.NumericSystem;
 import com.iconmaster.eqlib.recipe.RecipeRegistry;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import java.io.File;
+import java.util.Scanner;
 import net.minecraftforge.common.config.Configuration;
 
 /**
@@ -29,9 +31,14 @@ public class EquivLib {
 	@Mod.Instance("EquivLib")
 	public static EquivLib instance = new EquivLib();
 	
+	@SidedProxy(clientSide = "com.iconmaster.eqlib.ClientProxy", serverSide = "com.iconmaster.eqlib.CommonProxy")
+	public static CommonProxy proxy;
+	
+	public static NumericSystem sys; //for testing
+	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		new NumericSystem();
+		sys = new NumericSystem(); //for testing
 		
 		configRoot = new File(event.getModConfigurationDirectory(), "eqlib/");
 		configRoot.mkdir();
@@ -49,7 +56,7 @@ public class EquivLib {
 	
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
-		
+		proxy.registerEvents();
 	}
 	
 	@Mod.EventHandler
@@ -61,5 +68,14 @@ public class EquivLib {
 			dir2.mkdir();
 			handler.loadConfig(dir);
 		}
+	}
+	
+	public static String readAll(Scanner in) {
+		StringBuilder sb = new StringBuilder();
+		while (in.hasNext()) {
+			sb.append(in.nextLine());
+			sb.append("\n");
+		}
+		return sb.toString();
 	}
 }

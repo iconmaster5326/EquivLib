@@ -1,5 +1,6 @@
 package com.iconmaster.eqlib.recipe;
 
+import com.iconmaster.eqlib.EquivLib;
 import com.iconmaster.eqlib.config.ConfigHandler;
 import com.iconmaster.eqlib.config.ConfigRegistry;
 import java.io.File;
@@ -85,7 +86,7 @@ public abstract class EquivSystem<T> {
 			for (File f : values.listFiles()) {
 				try {
 					Scanner in = new Scanner(f);
-					amap.putAll(sys.config.stringToValues(in.next(".*")));
+					amap.putAll(sys.config.stringToValues(EquivLib.readAll(in)));
 				} catch (FileNotFoundException ex) {
 					ex.printStackTrace();
 				}

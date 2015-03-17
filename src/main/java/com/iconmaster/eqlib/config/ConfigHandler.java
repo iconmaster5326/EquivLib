@@ -1,5 +1,6 @@
 package com.iconmaster.eqlib.config;
 
+import com.iconmaster.eqlib.EquivLib;
 import com.iconmaster.eqlib.recipe.EquivHandler;
 import com.iconmaster.eqlib.recipe.ItemData;
 import com.iconmaster.eqlib.recipe.RecipeMap;
@@ -53,7 +54,8 @@ public abstract class ConfigHandler<T> {
 				//load values from file
 				try {
 					Scanner in = new Scanner(file);
-					values = stringToValues(in.next(".*"));
+					values = stringToValues(EquivLib.readAll(in));
+					System.out.println(values);
 				} catch (IOException ex) {
 					ex.printStackTrace();
 				}
@@ -93,7 +95,7 @@ public abstract class ConfigHandler<T> {
 		HashMap<ItemData, T> map = new HashMap<ItemData, T>();
 		String[] lines = str.split("\n");
 		for (String line : lines) {
-			String[] subs = str.split("=");
+			String[] subs = line.split("=");
 			if (subs.length==1) {
 				if (!line.isEmpty() && !line.startsWith("#")) {
 					//ERROR
