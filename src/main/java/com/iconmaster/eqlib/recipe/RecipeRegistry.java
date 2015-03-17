@@ -24,6 +24,8 @@ public class RecipeRegistry {
 	public static List<RecipeHandler> handlers = new ArrayList<RecipeHandler>();
 	public static Map<Class, List> vanillaCrafting;
 	
+	public static String[] oreDictBlacklist;
+	
 	static { //add default handlers
 		handlers.add(new ShapedCraftingHandler());
 		handlers.add(new ShapelessCraftingHandler());
