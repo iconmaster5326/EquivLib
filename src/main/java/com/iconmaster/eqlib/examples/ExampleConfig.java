@@ -9,7 +9,7 @@ import com.iconmaster.eqlib.config.ConfigHandler;
 public class ExampleConfig extends ConfigHandler<Double> {
 
 	public ExampleConfig() {
-		super("example");
+		super("example", new NumericHandler());
 	}
 
 	@Override
@@ -21,5 +21,4 @@ public class ExampleConfig extends ConfigHandler<Double> {
 	public Double fromString(String item) {
 		return Double.parseDouble(item);
 	}
-	
 }

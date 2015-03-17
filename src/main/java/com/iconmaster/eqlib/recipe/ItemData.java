@@ -68,4 +68,32 @@ public class ItemData {
 	public String toString() {
 		return "ItemData{" + "name=" + name + ", meta=" + meta + ", fluid=" + fluid + '}';
 	}
+	
+	public static String toString(ItemData data) {
+		if (data==null) {
+			return "null";
+		}
+		StringBuilder sb = new StringBuilder();
+		sb.append(data.name);
+		if (data.meta!=0) {
+			sb.append("::");
+			sb.append(data.meta);
+		}
+		return sb.toString();
+	}
+	
+	public static ItemData fromString(String str) {
+		String[] subs = str.split("::");
+		boolean fluid = subs[0].startsWith(FLUID_NAME);
+		if (subs.length==1) {
+			return new ItemData(subs[0], 0, fluid);
+		} else {
+			try {
+				return new ItemData(subs[0], Integer.parseInt(subs[1]), fluid);
+			} catch (NumberFormatException ex) {
+				ex.printStackTrace();
+				return null;
+			}
+		}
+	}
 }

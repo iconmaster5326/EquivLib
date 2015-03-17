@@ -3,9 +3,6 @@ package com.iconmaster.eqlib;
 import com.iconmaster.eqlib.config.ConfigHandler;
 import com.iconmaster.eqlib.config.ConfigRegistry;
 import com.iconmaster.eqlib.examples.ExampleConfig;
-import com.iconmaster.eqlib.examples.NumericHandler;
-import com.iconmaster.eqlib.recipe.EquivRegistry;
-import com.iconmaster.eqlib.recipe.RecipeMap;
 import com.iconmaster.eqlib.recipe.RecipeRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -28,7 +25,7 @@ public class EquivLib {
 	public static File mainConfigDir;
 	public static Configuration mainConfig;
 	public static File modsConfigDir;
-
+	
 	@Mod.Instance("EquivLib")
 	public static EquivLib instance = new EquivLib();
 	
@@ -52,6 +49,11 @@ public class EquivLib {
 	
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
+		
+	}
+	
+	@Mod.EventHandler
+	public void postInit(FMLPostInitializationEvent event) {
 		for (ConfigHandler handler : ConfigRegistry.handlers.values()) {
 			File dir = new File(modsConfigDir, handler.modName+"/");
 			dir.mkdir();
@@ -60,15 +62,7 @@ public class EquivLib {
 			File dir3 = new File(dir, "settings.cfg");
 			handler.loadSettings(dir3);
 			File dir4 = new File(dir, "cache.eqlib");
+			handler.loadCache(dir4);
 		}
-	}
-	
-	@Mod.EventHandler
-	public void postInit(FMLPostInitializationEvent event) {
-		RecipeMap map = new RecipeMap(new NumericHandler());
-		map.generateNodes();
-		//System.out.println(map.nodes);
-		EquivRegistry<Double> registry = new EquivRegistry<Double>(map.getMap());
-		System.out.println(registry.map);
 	}
 }
