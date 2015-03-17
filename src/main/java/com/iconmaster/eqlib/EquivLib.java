@@ -1,10 +1,14 @@
 package com.iconmaster.eqlib;
 
+import com.iconmaster.eqlib.config.ConfigHandler;
+import com.iconmaster.eqlib.config.ConfigRegistry;
+import com.iconmaster.eqlib.examples.ExampleConfig;
 import com.iconmaster.eqlib.examples.NumericHandler;
 import com.iconmaster.eqlib.recipe.EquivRegistry;
 import com.iconmaster.eqlib.recipe.RecipeMap;
 import com.iconmaster.eqlib.recipe.RecipeRegistry;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import java.io.File;
@@ -30,6 +34,8 @@ public class EquivLib {
 	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		ConfigRegistry.registerConfig(new ExampleConfig());
+		
 		configRoot = new File(event.getModConfigurationDirectory(), "eqlib/");
 		configRoot.mkdir();
 		
@@ -42,6 +48,19 @@ public class EquivLib {
 		
 		modsConfigDir = new File(configRoot, "mods/");
 		modsConfigDir.mkdir();
+	}
+	
+	@Mod.EventHandler
+	public void init(FMLInitializationEvent event) {
+		for (ConfigHandler handler : ConfigRegistry.handlers.values()) {
+			File dir = new File(modsConfigDir, handler.modName+"/");
+			dir.mkdir();
+			File dir2 = new File(dir, "values/");
+			dir2.mkdir();
+			File dir3 = new File(dir, "settings.cfg");
+			handler.loadSettings(dir3);
+			File dir4 = new File(dir, "cache.eqlib");
+		}
 	}
 	
 	@Mod.EventHandler
