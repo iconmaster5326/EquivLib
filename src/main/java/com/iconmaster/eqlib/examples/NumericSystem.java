@@ -28,7 +28,12 @@ public class NumericSystem extends EquivSystem<Double> {
 	@Override
 	public Map<ItemData, Double> getBaseValues() {
 		HashMap<ItemData, Double> map = new HashMap<ItemData, Double>();
-		map.put(new ItemData("minecraft:planks"), 4d);
+		map.put(new ItemData("minecraft:planks",0), 4d);
+		map.put(new ItemData("minecraft:planks",1), 4d);
+		map.put(new ItemData("minecraft:planks",2), 4d);
+		map.put(new ItemData("minecraft:planks",3), 4d);
+		map.put(new ItemData("minecraft:planks",4), 4d);
+		map.put(new ItemData("minecraft:planks",5), 4d);
 		return map;
 	}
 

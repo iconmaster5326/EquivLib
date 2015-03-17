@@ -38,7 +38,7 @@ public class EquivLib {
 	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		sys = new NumericSystem(); //for testing
+		//sys = new NumericSystem(); //for testing
 		
 		configRoot = new File(event.getModConfigurationDirectory(), "eqlib/");
 		configRoot.mkdir();
